@@ -15,13 +15,19 @@ app.use(express.json())
 dbConnection()
 
 // cors implementation
-app.use(cors(
-    {
-        origin:[process.env.FRONTEND_URL],
-        methods:["POST","GET","PUT","DELETE"],
-        credentials:true,
-    }
-))
+const allowedOrigins = process.env.CORS_ORIGIN || '*';
+
+app.use(cors({
+    origin: allowedOrigins,
+  }));
+
+// app.use(cors(
+//     {
+//         origin:[process.env.FRONTEND_URL],
+//         methods:["POST","GET","PUT","DELETE"],
+//         credentials:true,
+//     }
+// ))
 
 app.use(express.urlencoded({extended:true}))
 
